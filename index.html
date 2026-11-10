@@ -403,19 +403,19 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
       <div><h2 id="h-ai">Claude &amp; AI agents</h2><p class="sub">Agents and skills I designed to automate complex work across the software lifecycle, built on Claude Code.</p></div>
     </div>
     <div class="sim" id="sim">
-      <div class="stage" id="stage" role="img" aria-label="Animation: an Orchestrator delegates to its lead agents and their team through mailboxes until the epic is done">
+      <div class="stage" id="stage" role="img" aria-label="Animation: an Orchestrator bridges a Dev Lead team (Architect, Planner, Developer) and a QA Lead team (Tester, Reviewer) through mailboxes until the epic is done">
         <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M50 13 L11 47"/><path d="M50 13 L29.5 47"/><path d="M50 13 L49 47"/><path d="M50 13 L70 47"/><path d="M50 13 L89.5 47"/><path d="M49 47 V85"/><path d="M70 47 V85"/><path class="lat" d="M49 47 H70"/>
+          <path d="M50 13 L29 47"/><path d="M50 13 L77.5 47"/><path d="M29 47 L11 85"/><path d="M29 47 L29 85"/><path d="M29 47 L47 85"/><path d="M77.5 47 L67 85"/><path d="M77.5 47 L88 85"/><path class="lat" d="M11 85 L29 85"/>
         </svg>
         <div class="epic" id="epic"><small>Epic</small><b id="epicState">Waiting</b></div>
         <div class="av" data-id="orch" style="--rc:var(--ink);left:50%;top:13%"><span class="shp shp-star" style="--rc:var(--ink)"></span><b>Orchestrator</b></div>
-        <div class="av" data-id="arch" style="--rc:var(--c1);left:11%;top:47%"><span class="shp shp-circle" style="--rc:var(--c1)"></span><b>Architect</b></div>
-        <div class="av" data-id="plan" style="--rc:var(--c2);left:29.5%;top:47%"><span class="shp shp-sq" style="--rc:var(--c2)"></span><b>Planner</b></div>
-        <div class="av" data-id="dlead" style="--rc:var(--c3);left:49%;top:47%"><span class="shp shp-hex" style="--rc:var(--c3)"></span><b>Dev Lead</b></div>
-        <div class="av" data-id="qlead" style="--rc:var(--c4);left:70%;top:47%"><span class="shp shp-pill" style="--rc:var(--c4)"></span><b>QA Lead</b></div>
-        <div class="av" data-id="rev" style="--rc:var(--c5);left:89.5%;top:47%"><span class="shp shp-ring" style="--rc:var(--c5)"></span><b>Reviewer</b></div>
-        <div class="av" data-id="dev" style="--rc:var(--c3);left:49%;top:85%"><span class="shp shp-tri" style="--rc:var(--c3)"></span><b>Developer</b></div>
-        <div class="av" data-id="test" style="--rc:var(--c4);left:70%;top:85%"><span class="shp shp-dia" style="--rc:var(--c4)"></span><b>Tester</b></div>
+        <div class="av" data-id="dlead" style="--rc:var(--c3);left:29%;top:47%"><span class="shp shp-hex" style="--rc:var(--c3)"></span><b>Dev Lead</b></div>
+        <div class="av" data-id="qlead" style="--rc:var(--c4);left:77.5%;top:47%"><span class="shp shp-pill" style="--rc:var(--c4)"></span><b>QA Lead</b></div>
+        <div class="av" data-id="arch" style="--rc:var(--c1);left:11%;top:85%"><span class="shp shp-circle" style="--rc:var(--c1)"></span><b>Architect</b></div>
+        <div class="av" data-id="plan" style="--rc:var(--c2);left:29%;top:85%"><span class="shp shp-sq" style="--rc:var(--c2)"></span><b>Planner</b></div>
+        <div class="av" data-id="dev" style="--rc:var(--c3);left:47%;top:85%"><span class="shp shp-tri" style="--rc:var(--c3)"></span><b>Developer</b></div>
+        <div class="av" data-id="test" style="--rc:var(--c4);left:67%;top:85%"><span class="shp shp-dia" style="--rc:var(--c4)"></span><b>Tester</b></div>
+        <div class="av" data-id="rev" style="--rc:var(--c5);left:88%;top:85%"><span class="shp shp-ring" style="--rc:var(--c5)"></span><b>Reviewer</b></div>
         <span class="msg" id="msg" aria-hidden="true">&#9993;</span>
       </div>
       <div class="simbar">
@@ -423,7 +423,7 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
         <button class="clear" id="simPlay" type="button" aria-pressed="true">Pause</button>
       </div>
     </div>
-    <p class="aicap">An Epic-level orchestration system on Claude Code Agent Teams: an Orchestrator on top, lead agents beneath it and their teams below, each agent in its own git worktree and coordinating through mailboxes.</p>
+    <p class="aicap">An Epic-level orchestration system on Claude Code Agent Teams: an Orchestrator on top bridging a Dev Lead and a QA Lead, each leading its own agents. Every agent works in its own git worktree and coordinates through mailboxes.</p>
     <div class="trio aigrid">
       <div class="card"><h3>Unattended delivery</h3><p>Automated, unattended feature implementation, backed by test automation and notifying me only when it matters.</p></div>
       <div class="card"><h3>AI test automation</h3><p>A skill that generates Playwright E2E tests from GitHub issues and PRs with role-based auth, and manages the GitHub Projects issue lifecycle.</p></div>
@@ -789,22 +789,22 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
     var NAME = { orch: "Orchestrator", arch: "Architect", plan: "Planner", dlead: "Dev Lead", dev: "Developer", qlead: "QA Lead", test: "Tester", rev: "Reviewer" };
     // [path of agents (message hops along the tree), caption, epic state]
     var STEPS = [
-      [["orch", "arch"], "Design the epic.", "Designing"],
-      [["arch", "orch"], "Design is ready.", "Designing"],
-      [["orch", "plan"], "Split it into tasks.", "Planning"],
-      [["plan", "orch"], "Tasks are ready.", "Planning"],
-      [["orch", "dlead"], "Implement the tasks.", "Building"],
+      [["orch", "dlead"], "Deliver this epic.", "Designing"],
+      [["dlead", "arch"], "Design the solution.", "Designing"],
+      [["arch", "plan"], "Design is ready, split it into tasks.", "Planning"],
+      [["plan", "dlead"], "The task plan is ready.", "Planning"],
       [["dlead", "dev"], "This one is yours, in your own worktree.", "Building"],
-      [["dev", "dlead", "qlead"], "Branch is ready for QA.", "Testing"],
+      [["dev", "dlead"], "Branch is ready.", "Building"],
+      [["dlead", "orch", "qlead"], "Branch is ready for QA.", "Testing"],
       [["qlead", "test"], "Run the test plan.", "Testing"],
       [["test", "qlead"], "Tests failed, a fix is needed.", "Failing"],
-      [["qlead", "dlead", "dev"], "Fix it in your worktree.", "Fixing"],
-      [["dev", "dlead", "qlead"], "Fix pushed, please re-run.", "Retesting"],
+      [["qlead", "orch", "dlead", "dev"], "Fix it in your worktree.", "Fixing"],
+      [["dev", "dlead", "orch", "qlead"], "Fix pushed, please re-run.", "Retesting"],
       [["qlead", "test"], "Re-run the tests.", "Retesting"],
       [["test", "qlead"], "All tests are green.", "Retesting"],
-      [["qlead", "orch"], "QA signed off.", "QA sign-off"],
-      [["orch", "rev"], "Review the epic.", "Reviewing"],
-      [["rev", "orch"], "Approved, merge it.", "Reviewing"]
+      [["qlead", "rev"], "Review the change.", "Reviewing"],
+      [["rev", "qlead"], "Approved, merge it.", "Reviewing"],
+      [["qlead", "orch"], "QA and review are done, ready to merge.", "Merging"]
     ];
     var i = -1, timer = null, playing = false, started = false, HOP = 700;
     function pos(el) { var s = stage.getBoundingClientRect(), r = el.querySelector(".shp").getBoundingClientRect(); return [(r.left + r.width / 2 - s.left) / s.width * 100, (r.top + r.height / 2 - s.top) / s.height * 100]; }
