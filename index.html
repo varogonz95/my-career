@@ -289,6 +289,14 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
 .rv { transform: translateY(22px); transition: transform .7s cubic-bezier(.2, .8, .2, 1); }
 .rv.in { transform: none; }
 
+/* AI agents section */
+.aiteam { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 8px; margin-bottom: 14px; }
+.agent { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 8px 18px 8px 12px; background: color-mix(in srgb, var(--rc) 14%, var(--surface)); border: 1px solid color-mix(in srgb, var(--rc) 40%, var(--surface)); font-family: var(--f-display); font-weight: 700; font-size: 1.05rem; }
+.agent .shp { --s: 14px; }
+.ar { color: var(--muted); font-family: var(--f-mono); }
+.aicap { color: var(--muted); max-width: 70ch; margin: 0 0 18px; }
+.aigrid { margin-bottom: 18px; }
+.aigrid .card p { margin: 0; color: var(--muted); }
 @media (max-width: 760px) {
   .about { grid-template-columns: minmax(0, 1fr); }
   .sh.hide-s { display: none; }
@@ -312,6 +320,7 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
   <div class="bar">
     <div class="brand"><span class="shp shp-circle" style="--rc:var(--c1);--s:20px"></span>AG</div>
     <nav class="nav" aria-label="Sections">
+      <button type="button" data-go="sec-ai">AI agents</button>
       <button type="button" data-go="sec-time">Timeline</button>
       <button type="button" data-go="sec-stack">Stack</button>
       <button type="button" data-go="sec-exp">Experience</button>
@@ -345,6 +354,7 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
         <span class="fact" style="--rc:var(--c1)"><span class="shp shp-circle" style="--rc:var(--c1)"></span>7+ years</span>
         <span class="fact" style="--rc:var(--c2)"><span class="shp shp-sq" style="--rc:var(--c2)"></span>5 roles</span>
         <span class="fact" style="--rc:var(--c3)"><span class="shp shp-tri" style="--rc:var(--c3)"></span>Full stack &amp; API integration</span>
+        <span class="fact" style="--rc:var(--c5)"><span class="shp shp-dia" style="--rc:var(--c5)"></span>Claude Code &amp; AI agents</span>
       </div>
       <div class="contact" id="contact"><span class="social"><a href="https://github.com/varogonz95" target="_blank" rel="noopener" aria-label="GitHub profile"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24,1.9a21.6,21.6,0,0,0-6.8,42.2c1,.2,1.8-.9,1.8-1.8V39.4c-6,1.3-7.9-2.9-7.9-2.9a6.5,6.5,0,0,0-2.2-3.2C6.9,31.9,9,32,9,32a4.3,4.3,0,0,1,3.3,2c1.7,2.9,5.5,2.6,6.7,2.1a5.4,5.4,0,0,1,.5-2.9C12.7,32,9,28,9,22.6A10.7,10.7,0,0,1,11.9,15a6.2,6.2,0,0,1,.3-6.4,8.9,8.9,0,0,1,6.4,2.9,15.1,15.1,0,0,1,5.4-.8,17.1,17.1,0,0,1,5.4.7,9,9,0,0,1,6.4-2.8,6.5,6.5,0,0,1,.4,6.4A10.7,10.7,0,0,1,39,22.6C39,28,35.3,32,28.5,33.2a5.4,5.4,0,0,1,.5,2.9v6.2a1.8,1.8,0,0,0,1.9,1.8A21.7,21.7,0,0,0,24,1.9Z"/></svg></a><a href="https://linkedin.com/in/agonzalez95" target="_blank" rel="noopener" aria-label="LinkedIn profile"><svg viewBox="-5.5 0 32 32" aria-hidden="true"><path d="M0 8.219v15.563c0 1.469 1.156 2.625 2.625 2.625h15.563c0.719 0 1.406-0.344 1.844-0.781 0.469-0.469 0.781-1.063 0.781-1.844v-15.563c0-1.469-1.156-2.625-2.625-2.625h-15.563c-0.781 0-1.375 0.313-1.844 0.781-0.438 0.438-0.781 1.125-0.781 1.844zM2.813 10.281c0-1 0.813-1.875 1.813-1.875 1.031 0 1.875 0.875 1.875 1.875 0 1.031-0.844 1.844-1.875 1.844-1 0-1.813-0.813-1.813-1.844zM7.844 23.125v-9.531c0-0.219 0.219-0.406 0.375-0.406h2.656c0.375 0 0.375 0.438 0.375 0.719 0.75-0.75 1.719-0.938 2.719-0.938 2.438 0 4 1.156 4 3.719v6.438c0 0.219-0.188 0.406-0.375 0.406h-2.75c-0.219 0-0.375-0.219-0.375-0.406v-5.813c0-0.969-0.281-1.5-1.375-1.5-1.375 0-1.719 0.906-1.719 2.125v5.188c0 0.219-0.219 0.406-0.438 0.406h-2.719c-0.156 0-0.375-0.219-0.375-0.406zM2.875 23.125v-9.531c0-0.219 0.219-0.406 0.375-0.406h2.719c0.25 0 0.406 0.156 0.406 0.406v9.531c0 0.219-0.188 0.406-0.406 0.406h-2.719c-0.188 0-0.375-0.219-0.375-0.406z"/></svg></a></span></div>
     </div>
@@ -355,9 +365,29 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
   <section class="about rv" aria-labelledby="h-about">
     <div>
       <div class="sec-head"><h2 id="h-about">About</h2></div>
-      <p>I am a Senior Software Engineer with 7+ years of full stack experience across React, .NET Core, Node.js, Python, and Go, with cloud work on AWS and Azure. I have worked in financial services and fintech, supply chain, automotive retail, and central banking, and I hold the CertiProf Scrum Foundation and Scrum Developer Professional certificates. My hands-on background includes modernizing legacy applications to React and .NET Core, integrating frontends with modernized APIs, defining CI/CD pipelines in Azure DevOps and GitHub, and designing AWS infrastructure with CDK.</p>
+      <p>I am a Senior Software Engineer with 7+ years of full stack experience across React, .NET Core, Node.js, Python, and Go, with cloud work on AWS and Azure. I have worked in financial services and fintech, supply chain, automotive retail, and central banking, and I hold the CertiProf Scrum Foundation and Scrum Developer Professional certificates. My hands-on background includes modernizing legacy applications to React and .NET Core, integrating frontends with modernized APIs, defining CI/CD pipelines in Azure DevOps and GitHub, and designing AWS infrastructure with CDK. I also design AI agents and Claude Code skills, including multi-agent teams, that automate the software lifecycle.</p>
     </div>
     <div class="areas" id="areas"></div>
+  </section>
+
+  <section class="rv" id="sec-ai" aria-labelledby="h-ai">
+    <div class="sec-head">
+      <div><h2 id="h-ai">Claude &amp; AI agents</h2><p class="sub">Agents and skills I designed to automate complex work across the software lifecycle, built on Claude Code.</p></div>
+    </div>
+    <div class="aiteam" role="img" aria-label="Agent team: Architect, Planner, Developer, Tester, Reviewer">
+      <span class="agent" style="--rc:var(--c1)"><span class="shp shp-circle" style="--rc:var(--c1)"></span>Architect</span><span class="ar" aria-hidden="true">→</span>
+      <span class="agent" style="--rc:var(--c2)"><span class="shp shp-sq" style="--rc:var(--c2)"></span>Planner</span><span class="ar" aria-hidden="true">→</span>
+      <span class="agent" style="--rc:var(--c3)"><span class="shp shp-tri" style="--rc:var(--c3)"></span>Developer</span><span class="ar" aria-hidden="true">→</span>
+      <span class="agent" style="--rc:var(--c4)"><span class="shp shp-dia" style="--rc:var(--c4)"></span>Tester</span><span class="ar" aria-hidden="true">→</span>
+      <span class="agent" style="--rc:var(--c5)"><span class="shp shp-ring" style="--rc:var(--c5)"></span>Reviewer</span>
+    </div>
+    <p class="aicap">An Epic-level orchestration system on Claude Code Agent Teams: five specialized agents, each in its own git worktree, coordinating through mailboxes.</p>
+    <div class="trio aigrid">
+      <div class="card"><h3>Skills &amp; MCP</h3><p>Custom Claude Code skills and MCP integrations with Jira, GitHub, Gmail, Calendar, Drive, and Slack, covering the whole SDLC.</p></div>
+      <div class="card"><h3>AI test automation</h3><p>A skill that generates Playwright E2E tests from GitHub issues and PRs with role-based auth, and manages the GitHub Projects issue lifecycle.</p></div>
+      <div class="card"><h3>Reliable agents</h3><p>Test matrices before code, prompts grounded in real diff excerpts, and pre-supplied fixtures to cut hallucination in generated tests.</p></div>
+    </div>
+    <p class="aicap">Currently getting certified in AI agent SDKs and MLOps.</p>
   </section>
 
   <section class="rv" id="sec-time" aria-labelledby="h-time">
@@ -509,11 +539,11 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
     ["Cloud infrastructure as code", "AWS architecture with CDK and Azure architecture, plus Azure Functions", "cloud"],
     ["Legacy modernization", ".NET Framework 4.8 and .NET Standard to .NET Core, and monolith to microservices", "legacy"],
     ["Automated testing", "xUnit, Cypress, and Playwright", "test"],
-    ["AI tooling", "Building customized AI agents and skills that support the whole SDLC. Currently getting certified in AI agent SDKs and MLOps.", "ai", true]
+    ["AI tooling", "Customized AI agents and skills for the whole SDLC, built on Claude Code with MCP integrations and multi-agent teams. Currently getting certified in AI agent SDKs and MLOps.", "ai", true]
   ];
 
-  var MARQUEE = ["React","TypeScript",".NET Core","C#","Go","GraphQL","Node.js","Python","Angular","Azure","AWS CDK","Docker","PostgreSQL","TimescaleDB","SQL Server","GitHub CI/CD","Azure DevOps","Cypress","Playwright","xUnit","React Native","Expo","NSwag","EF Core"];
-  var WORDS = ["React frontends", "modern .NET APIs", "cloud on AWS CDK", "CI/CD pipelines", "Go microservices", "legacy-to-modern migrations"];
+  var MARQUEE = ["React","TypeScript",".NET Core","C#","Go","GraphQL","Node.js","Python","Claude Code","MCP","Agent Teams","Angular","Azure","AWS CDK","Docker","PostgreSQL","TimescaleDB","SQL Server","GitHub CI/CD","Azure DevOps","Cypress","Playwright","xUnit","React Native","Expo","NSwag","EF Core"];
+  var WORDS = ["React frontends", "AI agents that automate the SDLC", "modern .NET APIs", "cloud on AWS CDK", "CI/CD pipelines", "Go microservices", "legacy-to-modern migrations"];
   var INDS = ["Financial Services & Fintech", "Supply Chain", "Automotive Retail", "Central Banking & Public Sector", "E-Invoicing & Payments"];
   var EDU = [["Bachelor's, Business Informatics", "University of Costa Rica, 2013 – 2019"], ["CertiProf Scrum Foundation Professional Certificate", "2019"], ["CertiProf Scrum Developer Professional Certificate", "2020"]];
 
