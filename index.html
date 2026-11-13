@@ -342,6 +342,32 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
   .marquee { overflow-x: auto; }
   .mq-track { width: auto; flex-wrap: wrap; }
 }
+/* hover card + popover for the agent workflow */
+.aghover { position: relative; margin-bottom: 14px; }
+.hovcard { position: relative; width: 100%; display: flex; align-items: center; gap: 18px 24px; flex-wrap: wrap; text-align: left; cursor: pointer; border: 1px solid color-mix(in srgb, var(--c1) 35%, var(--line)); border-radius: 26px; padding: 22px 26px; background: linear-gradient(120deg, color-mix(in srgb, var(--c1) 10%, var(--surface)), color-mix(in srgb, var(--c2) 8%, var(--surface)) 55%, color-mix(in srgb, var(--c4) 10%, var(--surface))); transition: transform .25s, box-shadow .25s, border-color .25s; }
+.hovcard::before { content: ""; position: absolute; inset: -5px; border-radius: 31px; border: 2px solid var(--c1); opacity: 0; animation: hcPulse 2.6s ease-out infinite; pointer-events: none; }
+@keyframes hcPulse { 0% { opacity: .55; transform: scale(.985); } 100% { opacity: 0; transform: scale(1.025); } }
+.aghover.open .hovcard::before, .hovcard:hover::before { animation: none; }
+.hovcard:hover { transform: translateY(-2px); border-color: var(--c1); box-shadow: 0 22px 36px -26px var(--c1); }
+.hc-shapes { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hc-shapes .shp { --s: 26px; animation: hcBob 2.2s ease-in-out infinite alternate; }
+.hc-shapes .shp:nth-child(2n) { animation-delay: -.7s; }
+.hc-shapes .shp:nth-child(3n) { animation-delay: -1.3s; }
+.hc-shapes .shp-pill { --s: 22px; }
+@keyframes hcBob { from { translate: 0 -4px; } to { translate: 0 4px; } }
+.hovcard:hover .hc-shapes .shp { animation-duration: .6s; }
+.hc-text { display: flex; flex-direction: column; gap: 2px; flex: 1 1 14rem; min-width: 0; }
+.hc-text b { font-family: var(--f-display); font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; }
+.hc-text small { color: var(--muted); font-size: .95rem; }
+.hc-tap { display: none; }
+@media (hover: none) { .hc-hover { display: none; } .hc-tap { display: inline; } }
+.hc-cursor { width: 30px; height: 30px; flex: none; fill: var(--ink); stroke: var(--surface); stroke-width: 1.5; stroke-linejoin: round; animation: hcPoint 1.6s ease-in-out infinite; }
+@keyframes hcPoint { 0%, 100% { transform: translate(-6px, -4px); } 50% { transform: translate(4px, 4px) scale(.92); } }
+.aghover.open .hc-cursor { animation: none; opacity: .3; }
+.sim.pop { position: absolute; z-index: 20; left: 0; right: 0; top: 0; margin: 0; padding: 14px; border-radius: 30px; background: var(--surface); border: 1px solid var(--c1); box-shadow: 0 34px 60px -24px rgba(18, 20, 43, .45); opacity: 0; visibility: hidden; transform: translateY(10px) scale(.97); transform-origin: top center; transition: opacity .22s, transform .25s cubic-bezier(.2, .8, .2, 1), visibility 0s .25s; }
+.aghover.open .sim.pop { opacity: 1; visibility: visible; transform: none; transition: opacity .22s, transform .25s cubic-bezier(.2, .8, .2, 1); }
+.sim.pop .stage { border: 0; background: color-mix(in srgb, var(--ink) 4%, var(--surface)); }
+@media (prefers-reduced-motion: reduce) { .sim.pop { transform: none; } .hovcard::before { display: none; } }
 </style>
 
 <div class="wrap">
@@ -402,7 +428,13 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
     <div class="sec-head">
       <div><h2 id="h-ai">Claude &amp; AI agents</h2><p class="sub">Agents and skills I designed to automate complex work across the software lifecycle, built on Claude Code.</p></div>
     </div>
-    <div class="sim" id="sim">
+    <div class="aghover" id="aghover">
+      <button class="hovcard" id="hovcard" type="button" aria-expanded="false" aria-controls="sim">
+        <span class="hc-shapes" aria-hidden="true"><i class="shp shp-star" style="--rc:var(--ink)"></i><i class="shp shp-hex" style="--rc:var(--c3)"></i><i class="shp shp-pill" style="--rc:var(--c4)"></i><i class="shp shp-circle" style="--rc:var(--c1)"></i><i class="shp shp-sq" style="--rc:var(--c2)"></i><i class="shp shp-tri" style="--rc:var(--c3)"></i><i class="shp shp-dia" style="--rc:var(--c4)"></i><i class="shp shp-ring" style="--rc:var(--c5)"></i></span>
+        <span class="hc-text"><b>Meet the agent team</b><small class="hc-hint"><span class="hc-hover">Hover to watch them deliver an epic</span><span class="hc-tap">Tap to watch them deliver an epic</span></small></span>
+        <svg class="hc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 8-6 1.7L10.5 19z"/></svg>
+      </button>
+    <div class="sim pop" id="sim" role="region" aria-label="Agent team workflow">
       <div class="stage" id="stage" role="img" aria-label="Animation: an Orchestrator bridges a Dev Lead team (Architect, Planner, Developer) and a QA Lead team (Tester, Reviewer) through mailboxes until the epic is done">
         <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <path d="M50 13 L29 47"/><path d="M50 13 L77.5 47"/><path d="M29 47 L11 85"/><path d="M29 47 L29 85"/><path d="M29 47 L47 85"/><path d="M77.5 47 L67 85"/><path d="M77.5 47 L88 85"/><path class="lat" d="M11 85 L29 85"/>
@@ -422,6 +454,7 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
         <p class="simlog" id="simlog"><span class="dot" id="simdot"></span><span id="simtxt">Each agent works in its own git worktree and sends work to the next one through a mailbox.</span></p>
         <button class="clear" id="simPlay" type="button" aria-pressed="true">Pause</button>
       </div>
+    </div>
     </div>
     <p class="aicap">An Epic-level orchestration system on Claude Code Agent Teams: an Orchestrator on top bridging a Dev Lead and a QA Lead, each leading its own agents. Every agent works in its own git worktree and coordinates through mailboxes.</p>
     <div class="trio aigrid">
@@ -840,10 +873,21 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
     function pause() { playing = false; clearTimeout(timer); btn.textContent = "Play"; btn.setAttribute("aria-pressed", "false"); clear(); msg.classList.remove("fly"); }
     btn.addEventListener("click", function () { playing ? pause() : play(); });
     var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var box = $("aghover"), card = $("hovcard"), closeT = null;
+    function setOpen(o) {
+      clearTimeout(closeT); box.classList.toggle("open", o); card.setAttribute("aria-expanded", o ? "true" : "false");
+      if (o) { if (!reduce && !started) { started = true; play(); } else if (!reduce && !playing && !userPaused) { play(); } }
+      else { if (playing) pause(); started = false; userPaused = false; }
+    }
+    var userPaused = false;
+    btn.addEventListener("click", function () { userPaused = !playing; });
     if (reduce) { btn.textContent = "Play"; btn.setAttribute("aria-pressed", "false"); }
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting && !started && !reduce) { started = true; play(); } else if (!e.isIntersecting && playing) { pause(); started = false; } }); }, { threshold: .35 }).observe(stage);
-    } else if (!reduce) { play(); }
+    box.addEventListener("mouseenter", function () { if (matchMedia("(hover: hover)").matches) setOpen(true); });
+    box.addEventListener("mouseleave", function () { if (!matchMedia("(hover: hover)").matches) return; clearTimeout(closeT); closeT = setTimeout(function () { setOpen(false); }, 160); });
+    card.addEventListener("click", function () { var h = matchMedia("(hover: hover)").matches; setOpen(h ? true : !box.classList.contains("open")); });
+    card.addEventListener("focus", function () { if (card.matches(":focus-visible")) setOpen(true); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
+    document.addEventListener("click", function (e) { if (!box.contains(e.target)) setOpen(false); });
   })();
 })();
 </script>
