@@ -343,8 +343,8 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
   .mq-track { width: auto; flex-wrap: wrap; }
 }
 /* hover card + popover for the agent workflow */
-.aghover { position: relative; margin-bottom: 14px; }
-.hovcard { position: relative; width: 100%; display: flex; align-items: center; gap: 18px 24px; flex-wrap: wrap; text-align: left; cursor: pointer; border: 1px solid color-mix(in srgb, var(--c1) 35%, var(--line)); border-radius: 26px; padding: 22px 26px; background: linear-gradient(120deg, color-mix(in srgb, var(--c1) 10%, var(--surface)), color-mix(in srgb, var(--c2) 8%, var(--surface)) 55%, color-mix(in srgb, var(--c4) 10%, var(--surface))); transition: transform .25s, box-shadow .25s, border-color .25s; }
+.aghover { position: relative; display: flex; min-width: 0; }
+.hovcard { position: relative; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 16px; text-align: left; cursor: pointer; border: 1px solid color-mix(in srgb, var(--c1) 35%, var(--line)); border-radius: 26px; padding: 22px 24px; background: linear-gradient(120deg, color-mix(in srgb, var(--c1) 10%, var(--surface)), color-mix(in srgb, var(--c2) 8%, var(--surface)) 55%, color-mix(in srgb, var(--c4) 10%, var(--surface))); transition: transform .25s, box-shadow .25s, border-color .25s; }
 .hovcard::before { content: ""; position: absolute; inset: -5px; border-radius: 31px; border: 2px solid var(--c1); opacity: 0; animation: hcPulse 2.6s ease-out infinite; pointer-events: none; }
 @keyframes hcPulse { 0% { opacity: .55; transform: scale(.985); } 100% { opacity: 0; transform: scale(1.025); } }
 .aghover.open .hovcard::before, .hovcard:hover::before { animation: none; }
@@ -356,15 +356,15 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
 .hc-shapes .shp-pill { --s: 22px; }
 @keyframes hcBob { from { translate: 0 -4px; } to { translate: 0 4px; } }
 .hovcard:hover .hc-shapes .shp { animation-duration: .6s; }
-.hc-text { display: flex; flex-direction: column; gap: 2px; flex: 1 1 14rem; min-width: 0; }
-.hc-text b { font-family: var(--f-display); font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; }
+.hc-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.hc-text b { font-family: var(--f-display); font-size: 1.3rem; font-weight: 800; letter-spacing: -.01em; }
 .hc-text small { color: var(--muted); font-size: .95rem; }
 .hc-tap { display: none; }
 @media (hover: none) { .hc-hover { display: none; } .hc-tap { display: inline; } }
-.hc-cursor { width: 30px; height: 30px; flex: none; fill: var(--ink); stroke: var(--surface); stroke-width: 1.5; stroke-linejoin: round; animation: hcPoint 1.6s ease-in-out infinite; }
+.hc-cursor { position: absolute; right: 22px; bottom: 20px; width: 28px; height: 28px; flex: none; fill: var(--ink); stroke: var(--surface); stroke-width: 1.5; stroke-linejoin: round; animation: hcPoint 1.6s ease-in-out infinite; }
 @keyframes hcPoint { 0%, 100% { transform: translate(-6px, -4px); } 50% { transform: translate(4px, 4px) scale(.92); } }
 .aghover.open .hc-cursor { animation: none; opacity: .3; }
-.sim.pop { position: absolute; z-index: 20; left: 0; right: 0; top: 0; margin: 0; padding: 14px; border-radius: 30px; background: var(--surface); border: 1px solid var(--c1); box-shadow: 0 34px 60px -24px rgba(18, 20, 43, .45); opacity: 0; visibility: hidden; transform: translateY(10px) scale(.97); transform-origin: top center; transition: opacity .22s, transform .25s cubic-bezier(.2, .8, .2, 1), visibility 0s .25s; }
+.sim.pop { position: absolute; z-index: 20; left: 0; bottom: 0; width: max(100%, min(860px, calc(100vw - 32px))); margin: 0; padding: 14px; border-radius: 30px; background: var(--surface); border: 1px solid var(--c1); box-shadow: 0 34px 60px -24px rgba(18, 20, 43, .45); opacity: 0; visibility: hidden; transform: translateY(10px) scale(.97); transform-origin: bottom left; transition: opacity .22s, transform .25s cubic-bezier(.2, .8, .2, 1), visibility 0s .25s; }
 .aghover.open .sim.pop { opacity: 1; visibility: visible; transform: none; transition: opacity .22s, transform .25s cubic-bezier(.2, .8, .2, 1); }
 .sim.pop .stage { border: 0; background: color-mix(in srgb, var(--ink) 4%, var(--surface)); }
 @media (prefers-reduced-motion: reduce) { .sim.pop { transform: none; } .hovcard::before { display: none; } }
@@ -428,7 +428,12 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
     <div class="sec-head">
       <div><h2 id="h-ai">Claude &amp; AI agents</h2><p class="sub">Agents and skills I designed to automate complex work across the software lifecycle, built on Claude Code.</p></div>
     </div>
-    <div class="aghover" id="aghover">
+    <p class="aicap">An Epic-level orchestration system on Claude Code Agent Teams: an Orchestrator on top bridging a Dev Lead and a QA Lead, each leading its own agents. Every agent works in its own git worktree and coordinates through mailboxes.</p>
+    <div class="trio aigrid">
+      <div class="card"><h3>Unattended delivery</h3><p>Automated, unattended feature implementation, backed by test automation and notifying me only when it matters.</p></div>
+      <div class="card"><h3>AI test automation</h3><p>A skill that generates Playwright E2E tests from GitHub issues and PRs with role-based auth, and manages the GitHub Projects issue lifecycle.</p></div>
+      <div class="card"><h3>Reliable agents</h3><p>Test matrices before code, prompts grounded in real diff excerpts, and pre-supplied fixtures to cut hallucination in generated tests.</p></div>
+      <div class="aghover" id="aghover">
       <button class="hovcard" id="hovcard" type="button" aria-expanded="false" aria-controls="sim">
         <span class="hc-shapes" aria-hidden="true"><i class="shp shp-star" style="--rc:var(--ink)"></i><i class="shp shp-hex" style="--rc:var(--c3)"></i><i class="shp shp-pill" style="--rc:var(--c4)"></i><i class="shp shp-circle" style="--rc:var(--c1)"></i><i class="shp shp-sq" style="--rc:var(--c2)"></i><i class="shp shp-tri" style="--rc:var(--c3)"></i><i class="shp shp-dia" style="--rc:var(--c4)"></i><i class="shp shp-ring" style="--rc:var(--c5)"></i></span>
         <span class="hc-text"><b>Meet the agent team</b><small class="hc-hint"><span class="hc-hover">Hover to watch them deliver an epic</span><span class="hc-tap">Tap to watch them deliver an epic</span></small></span>
@@ -456,11 +461,6 @@ details[open] .plus { transform: rotate(135deg); background: var(--rc); color: v
       </div>
     </div>
     </div>
-    <p class="aicap">An Epic-level orchestration system on Claude Code Agent Teams: an Orchestrator on top bridging a Dev Lead and a QA Lead, each leading its own agents. Every agent works in its own git worktree and coordinates through mailboxes.</p>
-    <div class="trio aigrid">
-      <div class="card"><h3>Unattended delivery</h3><p>Automated, unattended feature implementation, backed by test automation and notifying me only when it matters.</p></div>
-      <div class="card"><h3>AI test automation</h3><p>A skill that generates Playwright E2E tests from GitHub issues and PRs with role-based auth, and manages the GitHub Projects issue lifecycle.</p></div>
-      <div class="card"><h3>Reliable agents</h3><p>Test matrices before code, prompts grounded in real diff excerpts, and pre-supplied fixtures to cut hallucination in generated tests.</p></div>
     </div>
   </section>
 
